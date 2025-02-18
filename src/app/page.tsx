@@ -58,17 +58,17 @@ const App = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-300 p-8 transition-colors duration-500">
       <header className="text-center mb-12">
-        <h1 className="text-5xl font-extrabold text-gray-800 dark:text-white drop-shadow-lg">Works</h1>
+        <h1 className="text-5xl font-extrabold text-gray-800 drop-shadow-lg">Works</h1>
       </header>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (
           <Card
             key={project.name}
             title={project.name}
-            className="shadow-2xl transform transition duration-500 hover:scale-105 bg-white dark:bg-gray-800 bg-opacity-90"
+            className="shadow-2xl transform transition duration-500 hover:scale-105 bg-white bg-opacity-90"
           >
             <div className="flex flex-col h-full">
-              <p className="text-gray-700 dark:text-gray-300 mb-4">{project.description}</p>
+              <p className="text-gray-700 mb-4">{project.description}</p>
                 <div className="mt-auto">
                 <a
                   href={project.github}
