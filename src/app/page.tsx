@@ -3,58 +3,29 @@
 import '@ant-design/v5-patch-for-react-19';
 import { Card } from 'antd';
 import * as React from 'react';
+import projects from './projects';
+import { useState } from 'react';
+import techStackIcons from './techStackIcons';
 
-const projects = [
-  {
-    name: '制作物紹介サイト',
-    description: 'このサイトです。',
-    github: 'https://github.com/mumeinosato/works',
-    demo: 'https://works.mtayo.net/',
-  },
-  {
-    name: 'Feedo',
-    description: '旧バージョンをリニューアルしたものです。',
-    github: 'https://github.com/cube5963/feedo_front',
-    demo: 'https://e55c631a-45d9-4671-7295-38c7f9b35eca.mtayo.net/',
-  },
-  {
-    name: 'Discord TTS Bot',
-    description: 'VOICEVOX Engineを使ったDiscordのテキスト読み上げBotです。',
-    github: 'https://github.com/mumeinosato/discord-tts',
-  },
-  {
-    name: 'ハカセジェネレーター',
-    description: 'Discord BotのApplication Commandを使い「教えて!ハカセ」の画像を生成するBotです。',
-    github: 'https://github.com/mumeinosato/hakase',
-    demo: '',
-  },
-  {
-    name: '修学旅行のしおり',
-    description: '自分たちが通っている高校の修学旅行で使用した、自分たちのクラスのためのしおりです。公開用にデータは仮のものに置き換えています。',
-    github: 'https://github.com/cube5963/school_trip_public',
-    demo: '',
-  },
-  {
-    name: '時刻表アプリ',
-    description: 'Androidで動く電車の時刻表アプリです。学校の最寄り駅の時刻表を調べる時間を短縮するために作成しました。',
-    github: 'https://github.com/mumeinosato/timetable',
-    demo: '',
-  },
-  {
-    name: 'Feedo（旧バージョン）',
-    description: '同級生がStartUpWeekend静岡7thに参加した際に制作支援したアプリです。',
-    github: 'https://github.com/cube5963/feedo_old',
-    demo: 'https://ca55bad4-a542-2735-89ab-670a991e0c24.mtayo.net/',
-  },
-  {
-    name: 'しかのこのこのここしたんたん',
-    description: 'マルコフ連鎖を使用し「しかのこのこのここしたんたん」を生成します。',
-    github: 'https://github.com/mumeinosato/shikanoko-nokonoko-koshitantan',
-    demo: '',
-  }
-];
-
+interface Project {
+  name: string;
+  description: string;
+  github: string;
+  demo?: string;
+  techStack: (keyof typeof techStackIcons)[];
+  image: string;
+}
 const App = () => {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const handleCardClick = (project: Project) => {
+    setSelectedProject(project);
+  };
+
+  const handleClosePopup = () => {
+    setSelectedProject(null);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-300 p-8 transition-colors duration-500">
       <header className="text-center mb-12">
@@ -65,11 +36,12 @@ const App = () => {
           <Card
             key={project.name}
             title={project.name}
-            className="shadow-2xl transform transition duration-500 hover:scale-105 bg-white bg-opacity-90"
+            className="shadow-2xl transform transition duration-500 hover:scale-105 bg-white bg-opacity-90 cursor-pointer"
+            onClick={() => handleCardClick(project)}
           >
             <div className="flex flex-col h-full">
               <p className="text-gray-700 mb-4">{project.description}</p>
-                <div className="mt-auto">
+              <div className="mt-auto">
                 <a
                   href={project.github}
                   target="_blank"
@@ -81,19 +53,68 @@ const App = () => {
                 <br />
                 {project.demo && (
                   <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-indigo-500 hover:underline"
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-indigo-500 hover:underline"
                   >
-                  Demo Page
+                    Demo Page
                   </a>
                 )}
-                </div>
+              </div>
             </div>
           </Card>
         ))}
       </div>
+      {selectedProject && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={handleClosePopup}>
+          <div className="bg-white p-8 rounded-lg shadow-2xl w-11/12 md:w-2/3 lg:w-1/2 relative transform transition-transform duration-500 ease-in-out scale-95 hover:scale-100" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={handleClosePopup}
+              className={`absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl transition-transform duration-300 ease-in-out transform ${Math.random() < 0.02 ? 'hover:-translate-x-8' : ''}`}
+            >
+              &times;
+            </button>
+            <h2 className="text-3xl font-bold mb-4 text-center text-gray-800 drop-shadow-lg">
+              {selectedProject.name}
+            </h2>
+            <p className="text-gray-700 mb-4 text-center">
+              {selectedProject.description}
+            </p>
+            <div className="flex flex-wrap gap-2 mb-4 justify-center">
+              {selectedProject.techStack.map((tech) => (
+                <div key={tech} className="relative group">
+                  <img src={techStackIcons[tech]} alt={tech} className="h-8 w-8" />
+                  <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    {tech}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-auto text-center">
+              <a
+                href={selectedProject.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-500 hover:underline"
+              >
+                GitHub Repository
+              </a>
+              <br />
+              {selectedProject.demo && (
+                <a
+                  href={selectedProject.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-500 hover:underline"
+                >
+                  Demo Page
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
