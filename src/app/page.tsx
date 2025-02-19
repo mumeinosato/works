@@ -14,6 +14,7 @@ interface Project {
   demo?: string;
   techStack: (keyof typeof techStackIcons)[];
   image: string;
+  role: string;
 }
 const App = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -80,6 +81,9 @@ const App = () => {
             </h2>
             <p className="text-gray-700 mb-4 text-center">
               {selectedProject.description}
+            </p>
+            <p className="text-gray-700 mb-4 text-center">
+              担当: {selectedProject.role}
             </p>
             <div className="flex flex-wrap gap-2 mb-4 justify-center">
               {selectedProject.techStack.map((tech) => (

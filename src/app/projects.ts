@@ -7,6 +7,7 @@ interface Project {
   demo?: string;
   techStack: (keyof typeof techStackIcons)[];
   image: string;
+  role: string;
 }
 
 const projects: Project[] = [
@@ -17,6 +18,7 @@ const projects: Project[] = [
     demo: 'https://works.mtayo.net/',
     techStack: ['Next.js', 'Ant Design', 'Tailwind CSS'],
     image: '',
+    role: '全般',
   },
   {
     name: 'Feedo',
@@ -25,6 +27,7 @@ const projects: Project[] = [
     demo: 'https://e55c631a-45d9-4671-7295-38c7f9b35eca.mtayo.net/',
     techStack: ['Next.js', 'Nest.js', 'MUI', 'PostgreSQL'],
     image: '',
+    role: 'フロントエンド:データ処理,バックエンド:全般',
   },
   {
     name: 'Discord TTS Bot',
@@ -32,6 +35,7 @@ const projects: Project[] = [
     github: 'https://github.com/mumeinosato/discord-tts',
     techStack: ['TypeScript', 'PostgreSQL'],
     image: '',
+    role: '全般',
   },
   {
     name: 'ハカセジェネレーター',
@@ -40,6 +44,7 @@ const projects: Project[] = [
     demo: '',
     techStack: ['TypeScript'],
     image: '',
+    role: '全般',
   },
   {
     name: '修学旅行のしおり',
@@ -48,6 +53,7 @@ const projects: Project[] = [
     demo: '',
     techStack: ['Remix', 'Tailwind CSS', 'MariaDB'],
     image: '',
+    role: 'データ処理全般',
   },
   {
     name: '時刻表アプリ',
@@ -56,6 +62,7 @@ const projects: Project[] = [
     demo: '',
     techStack: ['Flutter'],
     image: '',
+    role: '全般',
   },
   {
     name: 'Feedo（旧バージョン）',
@@ -64,6 +71,7 @@ const projects: Project[] = [
     demo: 'https://ca55bad4-a542-2735-89ab-670a991e0c24.mtayo.net/',
     techStack: ['Nuxt.js', 'Nest.js', 'MariaDB'],
     image: '',
+    role: 'フロントエンド:データ処理,バックエンド:全般',
   },
   {
     name: 'しかのこのこのここしたんたん',
@@ -72,6 +80,7 @@ const projects: Project[] = [
     demo: '',
     techStack: ['TypeScript'],
     image: '',
+    role: '全般',
   }
 ];
 
