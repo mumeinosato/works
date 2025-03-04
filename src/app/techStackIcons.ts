@@ -10,6 +10,7 @@ const techStackIcons = {
   'MariaDB': '/icon/mariadb.svg',
   'Flutter': '/icon/flutter.svg',
   'Nuxt.js': '/icon/nuxt.svg',
+  'Spigot': '/icon/spigotmc.svg',
 };
 
 export default techStackIcons;

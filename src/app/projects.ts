@@ -12,6 +12,15 @@ interface Project {
 
 const projects: Project[] = [
   {
+    name: 'サーバー間アイテム共有Plugin',
+    description: 'PaperMCのサーバー間でアイテムが共有できるPluginです。',
+    github: 'https://github.com/mumeinosato/Inventory-DB',
+    demo: '',
+    techStack: ['Spigot', 'MariaDB'],
+    image: '',
+    role: '全般',
+  },
+  {
     name: '制作物紹介サイト',
     description: 'このサイトです。',
     github: 'https://github.com/mumeinosato/works',
